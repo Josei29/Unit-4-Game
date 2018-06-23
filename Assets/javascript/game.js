@@ -99,6 +99,7 @@ $(document).ready(function() {
     function Defender() {
         $(".Character").css("background-color", "red", "!important");
         $(".Character").animate({ top: "240px" });
+        $(".Character").addClass("Enemie");
         Enemie();
     }
 
@@ -109,10 +110,20 @@ $(document).ready(function() {
     function Enemie() {
         if ((Enemies >= 1) && (YourCharacter == true)) {
             console.log("Choose Defender");
-            $(".Character").on("click", function() {
-                $(".Character").addClass("Enemie");
-                $(".Enemie").animate({ top: "500px" });
+            $(".Enemie").on("click", function() {
+                $(".Enemie").animate({ top: "800px" });
+                YourDefender = true;
             }) // Character On Click
         } // If
+    }
+
+    if ((YourCharacter == true) && (YourDefender == true)) {
+        $("button").on("click", function() { 
+            Attack();
+        });
+    } // If
+
+    function Attack() {
+        console.log("You Attacked Me");
     }
 }) // Document Ready

@@ -55,75 +55,104 @@ $(document).ready(function() {
 
     // Choose Your Character
     var YourCharacter = false;
+    var Character;
     
     $("#ObiWan").on("click", function() { 
         $("#ObiWan").css("background-color", "Green");
         $("#ObiWan").css("position", "absolute");
-        $("#ObiWan").data(ObiWan);
         $("#ObiWan").removeClass( "Character" );
         YourCharacter = true;
-        var Char = $(this);
+        Character = ObiWan;
         Defender();
     });
 
     $("#Sidious").on("click", function() {
         $("#Sidious").css("background-color", "Green");
         $("#Sidious").css("position", "absolute");
-        $("#Sidious").data(Sidious);
         $("#Sidious").removeClass( "Character" );
         YourCharacter = true;
-        var Char = $(this);
+        Character = Sidious;
         Defender();
     });
     
     $("#Vader").on("click", function() {
         $("#Vader").css("background-color", "Green");
         $("#Vader").css("position", "absolute");
-        $("#Vader").data(Vader);
         $("#Vader").removeClass( "Character" );
         YourCharacter = true;
-        var Char = $(this);
+        Character = Vader;
         Defender();
     });
 
     $("#Yoda").on("click", function() {
         $("#Yoda").css("background-color", "Green");
         $("#Yoda").css("position", "absolute");
-        $("#Yoda").data(Vader);
         $("#Yoda").removeClass( "Character" );
         YourCharacter = true;
-        var Char = $(this);
+        Character = Yoda;
         Defender();
     });
 
     function Defender() {
         $(".Character").css("background-color", "red", "!important");
         $(".Character").animate({ top: "240px" });
-        $(".Character").addClass("Enemie");
-        Enemie();
+        $(".Character").addClass("Enemy");
+        console.log(Character.Name);
+        Enemy();
     }
 
     // Choose Defender
     var YourDefender = false;
     var Enemies = 3;
+    var Defender;
 
-    function Enemie() {
+    function Enemy() {
         if ((Enemies >= 1) && (YourCharacter == true)) {
             console.log("Choose Defender");
-            $(".Enemie").on("click", function() {
-                $(".Enemie").animate({ top: "800px" });
+            $(".Enemy").on("click", function() {
+                $(".Enemy").removeClass(".Character");
+                $(".Enemy").animate({ top: "800px" });
                 YourDefender = true;
+                $(".Enemy") = Defender;
             }) // Character On Click
         } // If
     }
 
-    if ((YourCharacter == true) && (YourDefender == true)) {
+    if ((YourCharacter == true) && (YourDefender == true) && (Character.HP > 0)) {
         $("button").on("click", function() { 
             Attack();
         });
     } // If
+    else if (Character.HP < 0) {
+        Lose();
+    }
+    else if (Enemies < 1) {
+        Win();
+    }
 
     function Attack() {
         console.log("You Attacked Me");
+        Defender.HP = Defender.HP - Character.Attack;
+        Character.Attack += Character.Attack;
+        if (Defender.HP < 1) {
+            YourDefender = false;
+            Enemies--;
+            Enemy();
+        } // If
+        else {
+            Counter();
+        } // Else 
+    } // Attack
+
+    function Counter() {
+        Character.HP = Character.HP - Defender.Counter;
+    } // Counter
+
+    function Lose() {
+        console.log("You Lose!");
+    }
+
+    function Win() {
+        console.log("You Won");
     }
 }) // Document Ready

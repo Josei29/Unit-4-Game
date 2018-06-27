@@ -57,49 +57,56 @@ $(document).ready(function() {
     var YourCharacter = false;
     var Character;
     
-    $("#ObiWan").on("click", function() { 
-        $("#ObiWan").css("background-color", "Green");
-        $("#ObiWan").css("position", "absolute");
-        $("#ObiWan").removeClass( "Character" );
-        YourCharacter = true;
-        Character = ObiWan;
-        Defender();
-    });
+    if (YourCharacter === false) {
+        $("#ObiWan").on("click", function() { 
+            $("#ObiWan").css("background-color", "Green");
+            $("#ObiWan").css("position", "absolute");
+            $("#ObiWan").removeClass( "Character" );
+            YourCharacter = true;
+            Character = ObiWan;
+            Defender();
+        });
+    } // If
 
-    $("#Sidious").on("click", function() {
-        $("#Sidious").css("background-color", "Green");
-        $("#Sidious").css("position", "absolute");
-        $("#Sidious").removeClass( "Character" );
-        YourCharacter = true;
-        Character = Sidious;
-        Defender();
-    });
+    if (YourCharacter === false) {
+        $("#Sidious").on("click", function() {
+            $("#Sidious").css("background-color", "Green");
+            $("#Sidious").css("position", "absolute");
+            $("#Sidious").removeClass( "Character" );
+            YourCharacter = true;
+            Character = Sidious;
+            Defender();
+        });
+    } // If
     
-    $("#Vader").on("click", function() {
-        $("#Vader").css("background-color", "Green");
-        $("#Vader").css("position", "absolute");
-        $("#Vader").removeClass( "Character" );
-        YourCharacter = true;
-        Character = Vader;
-        Defender();
-    });
+    if (YourCharacter === false) {
+        $("#Vader").on("click", function() {
+            $("#Vader").css("background-color", "Green");
+            $("#Vader").css("position", "absolute");
+            $("#Vader").removeClass( "Character" );
+            YourCharacter = true;
+            Character = Vader;
+            Defender();
+        });
+    } // If
 
-    $("#Yoda").on("click", function() {
-        $("#Yoda").css("background-color", "Green");
-        $("#Yoda").css("position", "absolute");
-        $("#Yoda").removeClass( "Character" );
-        YourCharacter = true;
-        Character = Yoda;
-        Defender();
-    });
+    if (YourCharacter === false) {
+        $("#Yoda").on("click", function() {
+            $("#Yoda").css("background-color", "Green");
+            $("#Yoda").css("position", "absolute");
+            $("#Yoda").removeClass( "Character" );
+            YourCharacter = true;
+            Character = Yoda;
+            Defender();
+        });
+    } // If
 
     function Defender() {
-        $(".Character").css("background-color", "red", "!important");
+        $(".Character").css("background-color", "yellow", "!important");
         $(".Character").animate({ top: "240px" });
-        $(".Character").addClass("Enemy");
         console.log(Character.Name);
         Enemy();
-    }
+    } // Defender
 
     // Choose Defender
     var YourDefender = false;
@@ -107,28 +114,132 @@ $(document).ready(function() {
     var Defender;
 
     function Enemy() {
-        if ((Enemies >= 1) && (YourCharacter == true)) {
+        if ((Enemies > 0) && (YourCharacter === true) && (YourDefender === false)) {
             console.log("Choose Defender");
-            $(".Enemy").on("click", function() {
-                $(".Enemy").removeClass(".Character");
-                $(".Enemy").animate({ top: "800px" });
-                YourDefender = true;
-                $(".Enemy") = Defender;
-            }) // Character On Click
-        } // If
-    }
+            if (Character == ObiWan) {
+                $("#Sidious").on("click", function() {
+                    $("#Sidious").removeClass("Character");
+                    $("#Sidious").animate({ top: "600px" });
+                    $("#Sidious").css("background-color", "red", "!important");
+                    YourDefender = true;
+                    Defender = Sidious;
+                    Fight();
+                }); // Function
+                $("#Vader").on("click", function() {
+                    $("#Vader").removeClass("Character");
+                    $("#Vader").animate({ top: "600px" });
+                    $("#Vader").css("background-color", "red", "!important");
+                    YourDefender = true;
+                    Defender = Vader;
+                    Fight();
+                }); // Function
+                $("#Yoda").on("click", function() {
+                    $("#Yoda").removeClass("Character");
+                    $("#Yoda").animate({ top: "600px" });
+                    $("#Yoda").css("background-color", "red", "!important");
+                    YourDefender = true;
+                    Defender = Yoda;
+                    Fight();
+                }); // Function
+            }; // If ObiWan
+            
+            if (Character == Sidious) {
+                $("#ObiWan").on("click", function() {
+                    $("#ObiWan").removeClass("Character");
+                    $("#ObiWan").animate({ top: "600px" });
+                    $("#ObiWan").css("background-color", "red", "!important");
+                    YourDefender = true;
+                    Defender = ObiWan;
+                    Fight();
+                }); // Function
+                $("#Vader").on("click", function() {
+                    $("#Vader").removeClass("Character");
+                    $("#Vader").animate({ top: "600px" });
+                    $("#Vader").css("background-color", "red", "!important");
+                    YourDefender = true;
+                    Defender = Vader;
+                    Fight();
+                }); // Function
+                $("#Yoda").on("click", function() {
+                    $("#Yoda").removeClass("Character");
+                    $("#Yoda").animate({ top: "600px" });
+                    $("#Yoda").css("background-color", "red", "!important");
+                    YourDefender = true;
+                    Defender = Yoda;
+                    Fight();
+                }); // Function
+            }; // If Sidious
 
-    if ((YourCharacter == true) && (YourDefender == true) && (Character.HP > 0)) {
-        $("button").on("click", function() { 
-            Attack();
-        });
-    } // If
-    else if (Character.HP < 0) {
-        Lose();
-    }
-    else if (Enemies < 1) {
-        Win();
-    }
+            if (Character == Vader) {
+                $("#ObiWan").on("click", function() {
+                    $("#ObiWan").removeClass("Character");
+                    $("#ObiWan").animate({ top: "600px" });
+                    $("#ObiWan").css("background-color", "red", "!important");
+                    YourDefender = true;
+                    Defender = ObiWan;
+                    Fight();
+                }); // Function
+                $("#Sidious").on("click", function() {
+                    $("#Sidious").removeClass("Character");
+                    $("#Sidious").animate({ top: "600px" });
+                    $("#Sidious").css("background-color", "red", "!important");
+                    YourDefender = true;
+                    Defender = Sidious;
+                    Fight();
+                }); // Function
+                $("#Yoda").on("click", function() {
+                    $("#Yoda").removeClass("Character");
+                    $("#Yoda").animate({ top: "600px" });
+                    $("#Yoda").css("background-color", "red", "!important");
+                    YourDefender = true;
+                    Defender = Yoda;
+                    Fight();
+                }); // Function
+            }; // If Vader
+            
+            if (Character == Yoda) {
+                $("#ObiWan").on("click", function() {
+                    $("#ObiWan").removeClass("Character");
+                    $("#ObiWan").animate({ top: "600px" });
+                    $("#ObiWan").css("background-color", "red", "!important");
+                    YourDefender = true;
+                    Defender = ObiWan;
+                    Fight();
+                }); // Function
+                $("#Vader").on("click", function() {
+                    $("#Vader").removeClass("Character");
+                    $("#Vader").animate({ top: "600px" });
+                    $("#Vader").css("background-color", "red", "!important");
+                    YourDefender = true;
+                    Defender = Vader;
+                    Fight();
+                }); // Function
+                $("#Sidious").on("click", function() {
+                    $("#Sidious").removeClass("Character");
+                    $("#Sidious").animate({ top: "600px" });
+                    $("#Sidious").css("background-color", "red", "!important");
+                    YourDefender = true;
+                    Defender = Sidious;
+                    Fight();
+                }); // Function
+            }; // If Yoda
+
+        }; // If
+    } // Function Enemy
+
+    function Fight() {
+        if ((YourCharacter === true) && (YourDefender === true) && (Character.HP > 0)) {
+            $("button").on("click", function() { 
+                Attack();
+            });
+        } // If
+        else if (Character.HP < 0) {
+            Lose();
+        }
+        else if (Enemies < 1) {
+            Win();
+        }
+    } // Function Fight
 
     function Attack() {
         console.log("You Attacked Me");
@@ -150,9 +261,9 @@ $(document).ready(function() {
 
     function Lose() {
         console.log("You Lose!");
-    }
+    } // Lose
 
     function Win() {
         console.log("You Won");
-    }
+    } // Win
 }) // Document Ready

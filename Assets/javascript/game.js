@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    $("#Restart").hide();
+    
     // Creating The 4 Characters
     var ObiWan = {
         Name: "Obi-Wan Kenobi",
@@ -245,10 +247,36 @@ $(document).ready(function() {
         console.log("You Attacked Me");
         Defender.HP = Defender.HP - Character.Attack;
         Character.Attack += Character.Attack;
+        console.log(Defender.HP);
         if (Defender.HP < 1) {
-            YourDefender = false;
-            Enemies--;
-            Enemy();
+            if (Defender == ObiWan) {
+                $("#ObiWan").hide();
+                YourDefender = false;
+                Enemies--;
+                console.log("Enemies Left: " + Enemies);
+                Enemy();
+            }
+            if (Defender == Sidious) {
+                $("#Sidious").hide();
+                YourDefender = false;
+                Enemies--;
+                console.log("Enemies Left: " + Enemies);
+                Enemy();
+            }
+            if (Defender == Vader) {
+                $("#Vader").hide();
+                YourDefender = false;
+                Enemies--;
+                console.log("Enemies Left: " + Enemies);
+                Enemy();
+            }
+            if (Defender == Yoda) {
+                $("#Yoda").hide();
+                YourDefender = false;
+                Enemies--;
+                console.log("Enemies Left: " + Enemies);
+                Enemy();
+            }
         } // If
         else {
             Counter();
@@ -257,13 +285,21 @@ $(document).ready(function() {
 
     function Counter() {
         Character.HP = Character.HP - Defender.Counter;
+        console.log(Character.HP);
     } // Counter
 
     function Lose() {
         console.log("You Lose!");
+        $("#Restart").show();
     } // Lose
 
     function Win() {
         console.log("You Won");
+        $("#Restart").show();
     } // Win
+
+    $("#Restart").on("click", function(){ 
+        YourCharacter = false;
+        YourDefender = false;
+    });
 }) // Document Ready
